@@ -3,14 +3,13 @@ from is_rpi import is_rpi
 
 
 class SqlComm:
-    def __init__(self):
+    def __init__(self, server, user, password):
         self.settings = dict(
-            database="HOCK",
-            server=r"192.168.60.13\inst1",
+            # database="HOCK",
+            server=server,
             port="1433",
-            user="VyrobaStandalone",
-            password="Kmt0203"
-
+            user=user,
+            password=password
         )
         if is_rpi():
             self.settings["driver"] = 'FreeTDS'
@@ -22,7 +21,7 @@ class SqlComm:
             conn = pyodbc.connect(
                 f"Driver={self.settings['driver']};"
                 f"Server={self.settings['server']};"
-                f"Database={self.settings['database']};"
+                # f"Database={self.settings['database']};"
                 f"UID={self.settings['user']};"
                 f"PWD={self.settings['password']};"
                 f"PORT={self.settings['port']}"
@@ -39,7 +38,9 @@ class SqlComm:
         return newdata
 
 
-# sql = SqlComm()
-# query = "[sp_OPERACE_STROJ] @operace=20, @stroj=11"
+# sql = SqlComm(server=r"192.168.60.13\inst1",
+#               user="VyrobaStandalone",
+#               password="Kmt0203")
+# query = "SELECT FirstName, LastName FROM [HOCK].[dbo].SAI_PersonMedium_0048 WHERE ShortCode='9FBB47'"
 # res = sql.get_data_from_db(query)
 # print(res)
