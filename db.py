@@ -57,7 +57,3 @@ class DB:
                 json.dump(credincials, f, ensure_ascii=False, indent=4)
         finally:
             return credincials
-
-db = DB()
-n = db.read("9FBB47")
-print(n)
