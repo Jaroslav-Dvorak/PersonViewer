@@ -26,14 +26,14 @@ class SqlComm:
                 f"PWD={self.settings['password']};"
                 f"PORT={self.settings['port']}"
             )
+            cursor = conn.cursor()
+            cursor.execute(sqlstr)
+            newdata = cursor.fetchall()
         except Exception as e:
             print("Error SQL:")
             print(e)
             return None
         else:
-            cursor = conn.cursor()
-            cursor.execute(sqlstr)
-            newdata = cursor.fetchall()
             cursor.close()
         return newdata
 
