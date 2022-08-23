@@ -22,7 +22,7 @@ class DB:
                   f"WHERE ShortCode='{hex_code}'"
                   )
         name = self.sql.get_data_from_db(sqlstr)
-        if name is not None and len(name) == 1:
+        if name is not None and len(name) == 1 and isinstance(name[0], str):
             name = " ".join(name[0])
             old_persons = copy(self.persons)
             self.persons.update({hex_code: name})
