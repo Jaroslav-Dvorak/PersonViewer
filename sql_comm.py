@@ -35,6 +35,7 @@ class SqlComm:
             return None
         else:
             cursor.close()
+            conn.close()
         return newdata
 
 
